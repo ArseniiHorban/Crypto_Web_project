@@ -1,9 +1,7 @@
 from pathlib import Path
-from decouple import config
+from decouple import config 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = True
 
@@ -53,9 +51,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'crypto_app.wsgi.application'
 
 AUTH_USER_MODEL = 'custom_auth.User'
-
+ 
+#django secret key, recaptcha keys, google oauth2 keys, all these are taken from env file using config
+SECRET_KEY = config('SECRET_KEY')
+RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('GOOGLE_OAUTH2_CLIENT_ID')
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_OAUTH2_CLIENT_SECRET')
+
+#Oauth2 settings 
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email', 'profile']
 AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2',
@@ -65,17 +69,17 @@ LOGIN_URL = '/auth/login/google-oauth2/'
 LOGIN_REDIRECT_URL = '/dashboard/'
 LOGOUT_REDIRECT_URL = '/'
 
-RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY')
-RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY')
 
+#DB settings
+#DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT are taken from env file using config
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME', default='crypto_db'),
-        'USER': config('DB_USER', default='postgres'),
-        'PASSWORD': config('DB_PASSWORD', default='podikBezGari'),
-        'HOST': config('DB_HOST', default='db'),
-        'PORT': config('DB_PORT', default='5432'),
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
 

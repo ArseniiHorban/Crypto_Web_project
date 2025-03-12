@@ -3,26 +3,36 @@ services:
   db:
     image: postgres:15
     environment:
-      - POSTGRES_DB=crypto_db
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=podikBezGari
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
   web:
-    build: .
-    command: sh -c "sleep 5 && python manage.py runserver 0.0.0.0:8000"
+    build: . #эта хуйня говорит что мы билдим наш образ из текущей директории
+    command: sh -c "sleep 5 && python manage.py runserver 0.0.0.0:8000" # Костыль: ждём 5 сек перед запуском сервера
+      # Эта хуйня должна замедлять наш старт сервера, чтобы
+      # он стартовал не раньше старта датабазы, чтобы не выдал ошибку
+      # (сервер ждёт 5 секунд до запуска, чтобы датабаза точно смогла прогрузиться)
     ports:
-      - "8000:8000"
+      - "8000:8000" # Пробрасываем порт 8000 из контейнера на хост
     depends_on: 
-      - db
-      #эта хуйня должна замедлять наш старт сервера, что бы
-      #он стартовал не раньше старта датабазы что бы не выдал ошибку, но оно не работает
-      #по этому там есть sh -c "sleep 5" (сервер ждёт 5 секунд до запуска что бы датабаза точно смогла прогрузится)
-    environment:
-      - DB_NAME=crypto_db
-      - DB_USER=postgres
-      - DB_PASSWORD=podikBezGari
-      - DB_HOST=db
-      - DB_PORT=5432
+      - db # Зависимость от базы, но без healthcheck это просто порядок запуска 
+      #TODO: add healthcheck
+
+      
+    environment: #takes variables from .env file
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+    volumes:
+      # adding local directory to container
+      - .:/app
+    env_file:
+      # specify env file
+      - .env  
+
 volumes:
   postgres_data: 
