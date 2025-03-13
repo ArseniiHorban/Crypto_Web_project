@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "id": "user-1",
+      "name": "Test User",
+      "email": "test@example.com",
+      "password": "password123",
+      "isAdmin": false
+    },
+    {
+      "id": "user-2",
+      "name": "Another User",
+      "email": "user@example.com",
+      "password": "pass123",
+      "isAdmin": true
+    }
+  ],
+  "registerSuccess": {
+    "success": true,
+    "user": {
+      "id": "new-user-123",
+      "name": "New User",
+      "email": "new@example.com",
+      "isAdmin": false
+    }
+  },
+  "loginSuccess": {
+    "success": true,
+    "user": {
+      "id": "user-2",
+      "name": "Another User",
+      "email": "user@example.com",
+      "isAdmin": true
+    }
+  },
+  "error": {
+    "success": false,
+    "error": "Invalid email or password"
+  }
+}

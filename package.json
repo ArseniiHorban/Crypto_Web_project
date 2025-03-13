@@ -1,0 +1,10 @@
+{
+  "name": "frontemd_bs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "registration.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": true
+}

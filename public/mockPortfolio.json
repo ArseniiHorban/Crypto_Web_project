@@ -1,0 +1,5 @@
+{
+  "tickers": ["BTC", "SOL", "USDT", "MNT", "IP"],
+  "labels": ["Bitcoin", "Solana", "Digital Dollar", "Mantle Network", "Intellectual Property"],
+  "allocations": [20.8, 40.1, 0.9, 13.3, 17.6]
+}

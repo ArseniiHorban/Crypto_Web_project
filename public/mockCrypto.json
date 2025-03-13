@@ -1,0 +1,186 @@
+{
+  "cryptos": [
+    {
+      "name": "Bitcoin",
+      "price": "$97,456.89",
+      "directVol": "$2.27B",
+      "totalVol": "$23.27B",
+      "topTierVol": "$14.19B"
+    },
+    {
+      "name": "Ethereum",
+      "price": "$2,770.54",
+      "directVol": "$1.20B",
+      "totalVol": "$11.27B",
+      "topTierVol": "$7.73B"
+    },
+    {
+      "name": "Solana",
+      "price": "$174.19",
+      "directVol": "$222.65M",
+      "totalVol": "$2.92B",
+      "topTierVol": "$2.32B"
+    },
+    {
+      "name": "USD Coin",
+      "price": "$0.9999",
+      "directVol": "$247.90M",
+      "totalVol": "$2.74B",
+      "topTierVol": "$2.32B"
+    },
+    {
+      "name": "XRP",
+      "price": "$2.610",
+      "directVol": "$428.95M",
+      "totalVol": "$3.04B",
+      "topTierVol": "$2.32B"
+    },
+    {
+      "name": "Tether",
+      "price": "$1.000",
+      "directVol": "$995.90M",
+      "totalVol": "$1.01B",
+      "topTierVol": "$990.99M"
+    },
+    {
+      "name": "Litecoin",
+      "price": "$130.66",
+      "directVol": "$136.02M",
+      "totalVol": "$1.66B",
+      "topTierVol": "$727.39M"
+    },
+    {
+      "name": "Dogecoin",
+      "price": "$0.2512",
+      "directVol": "$46.64M",
+      "totalVol": "$1.04B",
+      "topTierVol": "$645.19M"
+    },
+    {
+      "name": "TRON",
+      "price": "$0.2421",
+      "directVol": "$20.77M",
+      "totalVol": "$251.82M",
+      "topTierVol": "$163.01M"
+    },
+    {
+      "name": "SEI",
+      "price": "$0.2810",
+      "directVol": "$19.21M",
+      "totalVol": "$211.12M",
+      "topTierVol": "$234.10M"
+    },
+    {
+      "name": "Jito",
+      "price": "$0.8129",
+      "directVol": "$49.21M",
+      "totalVol": "$192.16M",
+      "topTierVol": "$246.84M"
+    },
+    {
+      "name": "Jupiter",
+      "price": "$0.7218",
+      "directVol": "$32.19M",
+      "totalVol": "$586.32M",
+      "topTierVol": "$812.93M"
+    },
+    {
+      "name": "Celestia",
+      "price": "$0.3921",
+      "directVol": "$89.819M",
+      "totalVol": "$441.12M",
+      "topTierVol": "$234.10M"
+    },
+    {
+      "name": "Mantle",
+      "price": "$0.2810",
+      "directVol": "$19.21M",
+      "totalVol": "$211.12M",
+      "topTierVol": "$234.10M"
+    },
+    {
+      "name": "Mantle",
+      "price": "$0.2810",
+      "directVol": "$19.21M",
+      "totalVol": "$211.12M",
+      "topTierVol": "$234.10M"
+    },
+    {
+      "name": "Mantle",
+      "price": "$0.2810",
+      "directVol": "$19.21M",
+      "totalVol": "$211.12M",
+      "topTierVol": "$234.10M"
+    },
+    {
+      "name": "Mantle",
+      "price": "$0.2810",
+      "directVol": "$19.21M",
+      "totalVol": "$211.12M",
+      "topTierVol": "$234.10M"
+    },
+    {
+      "name": "Mantle",
+      "price": "$0.2810",
+      "directVol": "$19.21M",
+      "totalVol": "$211.12M",
+      "topTierVol": "$234.10M"
+    },
+    {
+      "name": "Mantle",
+      "price": "$0.2810",
+      "directVol": "$19.21M",
+      "totalVol": "$211.12M",
+      "topTierVol": "$234.10M"
+    },
+    {
+      "name": "Mantle",
+      "price": "$0.2810",
+      "directVol": "$19.21M",
+      "totalVol": "$211.12M",
+      "topTierVol": "$234.10M"
+    },
+    {
+      "name": "Mantle",
+      "price": "$0.2810",
+      "directVol": "$19.21M",
+      "totalVol": "$211.12M",
+      "topTierVol": "$234.10M"
+    },
+    {
+      "name": "Mantle",
+      "price": "$0.2810",
+      "directVol": "$19.21M",
+      "totalVol": "$211.12M",
+      "topTierVol": "$234.10M"
+    },
+    {
+      "name": "Mantle",
+      "price": "$0.2810",
+      "directVol": "$19.21M",
+      "totalVol": "$211.12M",
+      "topTierVol": "$234.10M"
+    },
+    {
+      "name": "Mantle",
+      "price": "$0.2810",
+      "directVol": "$19.21M",
+      "totalVol": "$211.12M",
+      "topTierVol": "$234.10M"
+    },
+    {
+      "name": "Mantle",
+      "price": "$0.2810",
+      "directVol": "$19.21M",
+      "totalVol": "$211.12M",
+      "topTierVol": "$234.10M"
+    },
+    {
+      "name": "Mantle",
+      "price": "$0.2810",
+      "directVol": "$19.21M",
+      "totalVol": "$211.12M",
+      "topTierVol": "$234.10M"
+    }
+  ]
+}
