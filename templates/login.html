@@ -1,0 +1,22 @@
+<!-- Форма для логина и пароля -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Вход в Crypto Tracker</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+    <h1>Вход в Crypto Tracker</h1>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if form.non_field_errors %}
+            <p style="color: red;">{{ form.non_field_errors }}</p>
+        {% endif %}
+        <div class="g-recaptcha" data-sitekey="{{ recaptcha_public_key }}"></div>
+        <button type="submit">Войти</button>
+    </form>
+    <p><a href="{% url 'social:begin' 'google-oauth2' %}">Войти через Google</a></p>
+    <p>Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a></p>
+</body>
+</html>
