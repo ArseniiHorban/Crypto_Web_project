@@ -20,7 +20,7 @@
         </div>
         <form id="authForm" class="auth-form" method="post" action="{% if is_login %}{% url 'login' %}{% else %}{% url 'register' %}{% endif %}">
             {% csrf_token %}
-            {% load widget_tweaks %}  <!-- Добавляем тут -->
+            {% load widget_tweaks %}  <!-- Добавляем тут  -->
             <div class="mb-3">
                 <label for="id_username" class="form-label">Username</label>
                 {{ form.username|add_class:"form-control" }}
@@ -76,7 +76,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 <script>
-    function switchToRegister() { window.location.href = "{% url 'register' %}"; }
+    function switchToRegister() { window.location.href = "{% url 'register' %}"; } 
     function switchToLogin() { window.location.href = "{% url 'login' %}"; }
 </script>
 </body>

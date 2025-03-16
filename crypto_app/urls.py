@@ -16,12 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from custom_auth import views
+from django.contrib.auth import views as auth_views 
+from django.http import HttpResponse # for temporaary dashboard
+from django.shortcuts import redirect # for redirecting to/from login page
+
+from custom_auth.views import CustomLoginView, register
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('auth/', include('social_django.urls', namespace='social')),
-    path('', views.login_view, name='login'),
-    path('dashboard/', views.dashboard, name='dashboard'),
+    path('admin/', admin.site.urls), #Admin page
+    path('auth/', include('social_django.urls', namespace='social')), #Oauth2 url
+    path('login/', CustomLoginView.as_view(), name='login'),  #authentification page
+    path('register/', register, name='register'),  # Registration page
+    path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),  # logout
+    path('dashboard/', lambda request: HttpResponse('Welcome to Dashboard!'), name='dashboard'),  # temporary dashboard page 
+    path('', lambda request: redirect('login'), name='home'), # redirect to login page 
 ]
 

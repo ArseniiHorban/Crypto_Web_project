@@ -18,6 +18,8 @@ INSTALLED_APPS = [
     'social_django',
     'rest_framework',
     'drf_spectacular',
+    'django_recaptcha',
+    'widget_tweaks' # я даже блять не знаю что это
 ]
 
 MIDDLEWARE = [
@@ -65,9 +67,27 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
-LOGIN_URL = '/auth/login/google-oauth2/'
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/dashboard/'
 LOGOUT_REDIRECT_URL = '/'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],  # Папка templates
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',  # Для OAuth2
+                'social_django.context_processors.login_redirect',  # Для OAuth2
+            ],
+        },
+    },
+]
 
 
 #DB settings
@@ -95,7 +115,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / "custom_auth" / "static"]
+STATIC_URL = 'static/' 
+STATICFILES_DIRS = [BASE_DIR / 'static']  # Папка static в корне проекта, оттуда подтягивается css и javascript 
+STATIC_ROOT = BASE_DIR / "staticfiles" # Для collectstatic (возможно позже понадобится)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -29,7 +29,7 @@ body {
     display: flex; /* Для центрирования */
     justify-content: center; /* Центрируем по горизонтали */
     margin: 0 auto; /* Дополнительное центрирование */
-    width: fit-content; /* Подстраиваем ширину под содержимое */
+    width: fit-content; /* Подстраиваем ширину под содержимое  */
 }
 .btn-group .btn {
     border-radius: 25px;
