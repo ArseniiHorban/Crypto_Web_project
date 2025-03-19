@@ -17,10 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views 
-from django.http import HttpResponse # for temporaary dashboard
 from django.shortcuts import redirect # for redirecting to/from login page
+from django.contrib.auth.decorators import login_required # for login required decorator
 
-from custom_auth.views import CustomLoginView, register
+from custom_auth.views import CustomLoginView, register, home
 
 urlpatterns = [
     path('admin/', admin.site.urls), #Admin page
@@ -28,7 +28,9 @@ urlpatterns = [
     path('login/', CustomLoginView.as_view(), name='login'),  #authentification page
     path('register/', register, name='register'),  # Registration page
     path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),  # logout
-    path('dashboard/', lambda request: HttpResponse('Welcome to Dashboard!'), name='dashboard'),  # temporary dashboard page 
-    path('', lambda request: redirect('login'), name='home'), # redirect to login page 
+    path('dashboard/', lambda request: redirect('home'), name='dashboard'),  # Перенаправляем с /dashboard/ на /home/ (чтобы сохранить совместимость с текущим LOGIN_REDIRECT_URL)
+    path('', lambda request: redirect('login'), name='home'),  # Перенаправляем неавторизованных на login
+    path('home/', login_required(home), name='authenticated_home'),  # Защищённый (там декоратор login required) маршрут для home 
+    
 ]
 

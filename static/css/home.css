@@ -1,0 +1,145 @@
+body {
+    background: linear-gradient(135deg, #1b1b1b 0%, #000 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding-top: 56px;
+}
+
+.navbar {
+    background-color: #1a1a1a;
+    padding: 10px 20px;
+    box-shadow: 0 2px 10px rgba(0, 212, 255, 0.2);
+}
+
+.navbar .nav-link {
+    color: #fff;
+    margin: 0 15px;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.navbar .nav-link:hover {
+    color: #ff69b4;
+}
+
+.navbar .dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-menu {
+    background-color: #1a1a1a;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-item {
+    color: #fff;
+}
+
+.dropdown-item:hover {
+    background-color: #333;
+    color: #ff69b4;
+}
+
+.navbar .profile-img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    filter: invert(100%);
+}
+
+.container {
+    padding: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.market-volume {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.chart-container {
+    background: transparent;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+}
+
+.chart-controls {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.chart-controls .btn {
+    border-radius: 25px;
+    padding: 8px 16px;
+    font-weight: bold;
+    transition: all 0.3s;
+    color: #fff;
+    border: 2px solid #ff69b4;
+    background: rgba(0, 212, 255, 0.1);
+    margin: 0 5px;
+}
+
+.chart-controls .btn:hover {
+    background: rgba(255, 105, 180, 0.3);
+}
+
+.chart-controls .btn.active {
+    background: #ff69b4;
+    color: #fff;
+    border: 2px solid #ff69b4;
+}
+
+.table-container {
+    background: transparent;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table th, .table td {
+    color: #fff;
+    border: 2px solid #ff69b4;
+    padding: 12px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.table th {
+    background: #1a1a1a;
+    font-weight: bold;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #1a1a1a;
+}
+
+.table-striped tbody tr:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .table th, .table td {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+}

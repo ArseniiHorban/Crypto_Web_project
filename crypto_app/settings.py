@@ -36,22 +36,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'crypto_app.urls'
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-
 WSGI_APPLICATION = 'crypto_app.wsgi.application'
 
 AUTH_USER_MODEL = 'custom_auth.User'
@@ -73,7 +57,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/dashboard/'
+LOGIN_REDIRECT_URL = '/home/' # Перенаправляем на home после успешного логина
 LOGOUT_REDIRECT_URL = '/'
 
 TEMPLATES = [

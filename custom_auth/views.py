@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
 from django.conf import settings
 from .forms import RegisterForm, CustomAuthenticationForm
+from django.contrib.auth.decorators import login_required
 import requests
 
 #function to verify captcha
@@ -59,3 +60,7 @@ def register(request):
         'recaptcha_public_key': settings.RECAPTCHA_PUBLIC_KEY,
         'is_login': False
     })
+
+@login_required
+def home(request):
+    return render(request, 'home.html')
