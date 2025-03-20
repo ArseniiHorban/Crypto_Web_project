@@ -22,9 +22,17 @@ def get_sentiment(request, coin):
 
 @csrf_exempt
 def get_current_data(request, coins):
+    """
+    Takes a string of coin symbols in a shape: 'BTC', 'ETH', 'UNI'
+    """
     current_data = CurrentDataController()
-    
-    data = current_data.process_current_data_call(coins)
+
+    if coins:
+        coins_list = coins.split(',')
+    else:
+        return JsonResponse({"error": "Invalid input parameters."}, status=500)
+
+    data = current_data.process_current_data_call(coins_list)
     
     if data:
         return JsonResponse(data, safe=False)
@@ -34,12 +42,15 @@ def get_current_data(request, coins):
 @csrf_exempt
 def get_historical_data(request, coins, threshold=7):
     """
-    Takes an array of valid coin symbols as a parameter. E.g ['BTC', 'ETH', 'UNI']
+    Takes a string of coin symbols in a shape: 'BTC', 'ETH', 'UNI'
     """
     data_controller = HistoricalDataController()
-
+    if coins and threshold:
+        coins_list = coins.split(',')
+    else:
+        return JsonResponse({"error": "Invalid input parameters."}, status=500)
     try:
-        data = data_controller.process_historical_data_call(coins, threshold)
+        data = data_controller.process_historical_data_call(coins_list, threshold)
 
         if data:
             return JsonResponse(data, safe=False)
