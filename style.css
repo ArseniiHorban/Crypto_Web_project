@@ -1,0 +1,44 @@
+/* Мінімальні кастомні стилі для підгонки під ваш дизайн */
+body {
+    background-color: #1a1a1a; /* Темний фон */
+    color: #fff; /* Білий текст */
+}
+
+.profile-img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    filter: invert(100%); /* Інверсія кольорів для іконки профілю */
+}
+
+.navbar {
+    background-color: #1a1a1a; /* Темний фон для навбару */
+    border-bottom: 1px solid #444; /* Лінія під навбаром */
+}
+
+.navbar-brand {
+    color: #ff69b4 !important; /* Рожевий колір для логотипу */
+    font-weight: bold;
+}
+
+.nav-link {
+    color: #fff !important; /* Білий колір для посилань */
+}
+
+.nav-link:hover {
+    color: #ff69b4 !important; /* Рожевий колір при наведенні */
+}
+
+.dropdown-menu {
+    background-color: #1a1a1a; /* Темний фон для dropdown */
+    border: 1px solid #444; /* Лінія для dropdown */
+}
+
+.dropdown-item {
+    color: #fff !important; /* Білий колір для елементів dropdown */
+}
+
+.dropdown-item:hover {
+    background-color: #333 !important; /* Темніший фон при наведенні */
+    color: #ff69b4 !important; /* Рожевий колір при наведенні */
+}

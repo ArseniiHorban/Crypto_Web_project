@@ -6,32 +6,17 @@
   <title>CryptoTracker - Portfolio</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css"> <!-- Підключення спільного CSS -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    body {
-      background-color: #1a1a1a;
-      color: #fff;
-      margin: 0;
-      padding-top: 56px;
+    /* Унікальні стилі для portfolio.html */
+    .table-dark {
+      background-color: #2a2a2a; /* Темний фон таблиці */
+      border-color: #444; /* Колір рамок */
     }
 
-    .navbar {
-      background-color: #1a1a1a;
-      padding: 10px 20px;
-    }
-
-    .navbar .nav-link {
-      color: #fff;
-      margin: 0 15px;
-      font-size: 1rem;
-    }
-
-    .navbar .nav-link:hover {
-      color: #ff69b4;
-    }
-
-    .content {
-      padding: 20px;
+    .table-dark th, .table-dark td {
+      border-color: #444; /* Колір рамок для комірок */
     }
 
     .portfolio-container {
@@ -41,46 +26,67 @@
 
     .portfolio-table {
       flex: 1; /* Таблиця займає 50% ширини */
-      background-color: #fff;
+      background-color: #2a2a2a; /* Темний фон для таблиці */
       padding: 20px;
-      border-radius: 5px;
+      border-radius: 10px; /* Закруглені кути */
     }
 
     .portfolio-table th, .portfolio-table td {
-      color: #000; /* Чорний текст для таблиці */
-      border-color: #ff69b4;
+      color: #fff; /* Чорний текст для таблиці */
+      border-color: #ff69b4; /* Рожева лінія для рамок */
+    }
+
+    .portfolio-table th {
+      color: #ff69b4; /* Рожевий колір для заголовків */
     }
 
     .chart-container {
       flex: 1; /* Графік займає 50% ширини */
-      background-color: #000;
+      background-color: #2a2a2a; /* Темний фон для контейнера графіка */
       padding: 20px;
-      border-radius: 5px;
+      border-radius: 10px; /* Закруглені кути */
     }
 
-    .profile-img {
-      width: 30px;
-      height: 30px;
-      object-fit: cover;
-      filter: invert(100%);
+    .chart-title {
+      font-size: 1.2rem;
+      color: #ff69b4; /* Рожевий колір для заголовка графіка */
+      margin-bottom: 20px;
+      text-align: center;
     }
 
     /* Стилі для тексту у формі модального вікна */
     .modal-content {
-      color: #000; /* Чорний текст у формі */
+      background-color: #2a2a2a; /* Темний фон для модального вікна */
+      color: #fff; /* Білий текст у формі */
     }
 
     .modal-content label {
-      color: #000; /* Чорний колір для текстів label */
+      color: #fff; /* Білий колір для текстів label */
     }
 
     .modal-content input {
-      color: #000; /* Чорний колір для тексту в input */
+      background-color: #1a1a1a; /* Темний фон для input */
+      color: #fff; /* Білий колір для тексту в input */
+      border: 1px solid #444; /* Лінія для input */
+    }
+
+    .modal-content input:focus {
+      border-color: #ff69b4; /* Рожева лінія при фокусі */
+      box-shadow: 0 0 5px #ff69b4; /* Рожева тінь при фокусі */
+    }
+
+    .btn-success, .btn-primary {
+      background-color: #ff69b4; /* Рожевий колір для кнопок */
+      border: none;
+    }
+
+    .btn-success:hover, .btn-primary:hover {
+      background-color: #e65ca0; /* Темніший рожевий при наведенні */
     }
   </style>
 </head>
 <body>
-<!-- Навігаційна панель -->
+<!-- Навігаційна панель (повторено з home.html) -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">CryptoTracker</a>
@@ -91,13 +97,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+          <a class="nav-link" href="home.html">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="market.html">Market</a>
+          <a class="nav-link" href="market.html">Market</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Portfolio</a>
+          <a class="nav-link active" aria-current="page" href="portfolio.html">Portfolio</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">News</a>
@@ -122,12 +128,12 @@
 </nav>
 
 <!-- Основний вміст -->
-<div class="content">
-  <h1 class="text-center mb-4">Portfolio</h1>
+<div class="container mt-5 pt-4">
+  <h1 class="text-center text-pink mb-4">Portfolio</h1>
   <div class="portfolio-container">
     <!-- Таблиця -->
     <div class="portfolio-table">
-      <table class="table table-striped">
+      <table class="table table-striped table-dark">
         <thead>
         <tr>
           <th>Ticker</th>
@@ -148,6 +154,7 @@
 
     <!-- Графік -->
     <div class="chart-container">
+      <div class="chart-title">Portfolio Allocation</div>
       <canvas id="portfolioChart"></canvas>
     </div>
   </div>
