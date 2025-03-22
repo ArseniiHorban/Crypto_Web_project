@@ -1,145 +1,223 @@
+/* Import common styles for header and footer */
+@import url('common.css');
+
+/* General body styles */
 body {
-    background: linear-gradient(135deg, #1b1b1b 0%, #000 100%);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    background: linear-gradient(135deg, #222 0%, #000 100%); /* Darker gradient: dark gray to black (black at bottom-right) */
+    color: #fff;
     font-family: 'Arial', sans-serif;
     margin: 0;
-    padding-top: 56px;
+    padding: 0;
+    min-height: 100vh;
+} 
+
+/* Main content styles */
+.main-content {
+    padding-top: 90px;
+    padding-bottom: 60px;
 }
 
-.navbar {
-    background-color: #1a1a1a;
-    padding: 10px 20px;
-    box-shadow: 0 2px 10px rgba(0, 212, 255, 0.2);
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff; /* White title */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.navbar .nav-link {
-    color: #fff;
-    margin: 0 15px;
-    font-size: 1rem;
-    transition: color 0.3s;
-}
-
-.navbar .nav-link:hover {
-    color: #ff69b4;
-}
-
-.navbar .dropdown-toggle::after {
-    display: none;
-}
-
-.dropdown-menu {
-    background-color: #1a1a1a;
-    border: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.dropdown-item {
-    color: #fff;
-}
-
-.dropdown-item:hover {
-    background-color: #333;
-    color: #ff69b4;
-}
-
-.navbar .profile-img {
-    width: 30px;
-    height: 30px;
-    object-fit: cover;
-    filter: invert(100%);
-}
-
-.container {
-    padding: 20px;
-    width: 100%;
-    max-width: 1200px;
-}
-
-.market-volume {
-    color: #fff;
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #fff; /* White section titles */
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.2rem;
-    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
 }
 
-.chart-container {
-    background: transparent;
-    border-radius: 15px;
-    padding: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+/* Market volume styles */
+.market-volume {
+    font-size: 1.5rem;
+    color: #fff; /* White text */
+    font-weight: bold;
+}
+
+/* Chart section styles */
+.chart-section {
+    margin-bottom: 60px;
 }
 
 .chart-controls {
-    text-align: center;
-    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-.chart-controls .btn {
-    border-radius: 25px;
-    padding: 8px 16px;
-    font-weight: bold;
-    transition: all 0.3s;
+.chart-btn {
+    background-color: transparent; /* Transparent background */
     color: #fff;
-    border: 2px solid #ff69b4;
-    background: rgba(0, 212, 255, 0.1);
-    margin: 0 5px;
+    border: 1px solid #ccc; /* Light gray border */
+    padding: 7px 14px; /* Reduced size by 30% (was 10px 20px) */
+    font-size: 0.7rem; /* Reduced font size by 30% (was 1rem) */
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
 }
 
-.chart-controls .btn:hover {
-    background: rgba(255, 105, 180, 0.3);
-}
-
-.chart-controls .btn.active {
-    background: #ff69b4;
+.chart-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Slight white tint on hover */
     color: #fff;
-    border: 2px solid #ff69b4;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
 }
 
-.table-container {
-    background: transparent;
-    border-radius: 15px;
-    padding: 15px;
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
-    overflow-x: auto;
+.chart-btn.active {
+    background-color: rgba(255, 255, 255, 0.1); /* Slight white tint for active button */
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+.chart-container {
+    background-color: transparent; /* Transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    height: 400px; /* Fixed height to match with stats */
+}
+
+#bitcoinChart {
+    max-height: 400px;
+    width: 100%;
+}
+
+/* Bitcoin stats styles */
+.bitcoin-stats {
+    margin-bottom: 60px;
+}
+
+.stats-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    height: 400px; /* Match height with chart */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stats-card p {
+    margin: 5px 0; /* Reduced margin for more content */
+    font-size: 0.9rem; /* Slightly smaller font to fit more data */
+}
+
+.stats-card strong {
+    color: #ccc; /* Light gray for labels */
+}
+
+.stats-card span {
+    color: #fff; /* White for values */
+}
+
+/* Trending coins section styles */
+.trending-section {
+    margin-bottom: 60px;
+}
+
+.trending-coin {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.coin-img {
+    width: 30px;
+    height: 30px;
+}
+
+.trending-coin p {
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+/* Table section styles */
+.table-section {
+    margin-bottom: 60px;
 }
 
 .table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
+    color: #fff;
+    background-color: transparent !important; /* Ensure transparent background */
 }
 
-.table th, .table td {
-    color: #fff;
-    border: 2px solid #ff69b4;
+.table th,
+.table td {
+    border-color: rgba(255, 255, 255, 0.1);
     padding: 12px;
-    text-align: center;
-    transition: background-color 0.3s;
+    color: #fff; /* White text to contrast with black background */
+    background-color: transparent !important; /* Ensure transparent background */
 }
 
 .table th {
-    background: #1a1a1a;
+    background-color: #0f0f1a; /* Very dark background for headers */
     font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #1a1a1a;
+    background-color: rgba(255, 255, 255, 0.02);
 }
 
-.table-striped tbody tr:hover {
-    background-color: #333;
-    color: #fff;
+.table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Light gray on hover */
+    transition: background-color 0.3s ease;
 }
 
+/* Responsive styles */
 @media (max-width: 768px) {
-    .table th, .table td {
-        font-size: 0.9rem;
+    .main-content {
+        padding-top: 70px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .chart-btn {
+        padding: 6px 12px; /* Reduced size for smaller screens */
+        font-size: 0.65rem;
+    }
+
+    .chart-container {
+        padding: 15px;
+        height: 300px; /* Adjust height for smaller screens */
+    }
+
+    .stats-card {
+        height: auto; /* Allow stats card to grow on smaller screens */
+    }
+
+    .table th,
+    .table td {
+        font-size: 0.85rem;
         padding: 8px;
+    }
+
+    .stats-card p {
+        font-size: 0.85rem;
+    }
+
+    .trending-coin p {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .chart-btn {
+        padding: 5px 10px;
+        font-size: 0.6rem;
     }
 }

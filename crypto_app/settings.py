@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEBUG = True
+DEBUG = True #Set to false after deploying 
 
 ALLOWED_HOSTS = []
 

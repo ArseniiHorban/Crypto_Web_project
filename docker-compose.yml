@@ -27,12 +27,24 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
+      - Debug=True
     volumes:
       # adding local directory to container
       - .:/app
     env_file:
       # specify env file
       - .env  
+    develop: #this thing is needed to rebuild container on file changes
+      watch:
+        - action: rebuild
+          path: .
+          target: /app
+          ignore: #ignoring these directories and files 
+            - .git/
+            - __pycache__/
+            - venv/
+            - .idea/ #это для сергея, что бы у него докер не пересобирался от каждого изменения в .idea
+            - logs/ #for future logs file that should be ignored 
 
 volumes:
   postgres_data: 
