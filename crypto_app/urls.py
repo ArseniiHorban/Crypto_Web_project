@@ -21,7 +21,10 @@ from django.shortcuts import redirect # for redirecting to/from login page
 from django.contrib.auth.decorators import login_required # for login required decorator
 
 from custom_auth.views import CustomLoginView, register, home
+<<<<<<< HEAD
 from external_apis.views import get_sentiment, get_current_data, get_historical_data
+=======
+>>>>>>> 77a4843 (added admin panel for superuser)
 
 urlpatterns = [
     path('admin/', admin.site.urls), #Admin page
@@ -32,10 +35,13 @@ urlpatterns = [
     path('dashboard/', lambda request: redirect('home'), name='dashboard'),  # Перенаправляем с /dashboard/ на /home/ (чтобы сохранить совместимость с текущим LOGIN_REDIRECT_URL)
     path('', lambda request: redirect('login'), name='home'),  # Перенаправляем неавторизованных на login
     path('home/', login_required(home), name='authenticated_home'),  # Защищённый (там декоратор login required) маршрут для home 
+<<<<<<< HEAD
 
     path('sentiment/<str:coin>/', get_sentiment, name='get_sentiment'),
     path('current-data/<str:coins>/', get_current_data, name='get_current_data'),
     path('historical-data/<str:coins>/<int:threshold>/', get_historical_data, name='get_historical_data')
+=======
+>>>>>>> 77a4843 (added admin panel for superuser)
     
 ]
 
