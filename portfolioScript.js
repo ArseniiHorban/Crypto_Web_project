@@ -8,12 +8,21 @@ function getRandomColor() {
     return color;
 }
 
-// Функція для завантаження даних з бекенду (mockPortfolio.json)
+// Функція для завантаження даних із portfolioData.json
 async function loadPortfolioData() {
     try {
-        const response = await fetch('/public/mockPortfolio.json'); // Шлях до файлу з даними
+        const response = await fetch('/public/portfolioData.json');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
         const data = await response.json();
-        return data;
+        return {
+            tickers: Object.keys(data.data.assets),
+            labels: Object.keys(data.data.assets),
+            allocations: Object.values(data.data.assets),
+            performance: data.performance,
+            portfolioValue: data.portfolio_value // Додаємо portfolio_value для графіка
+        };
     } catch (error) {
         console.error('Error loading portfolio data:', error);
         alert('Failed to load portfolio data. Check console for details.');
@@ -21,17 +30,28 @@ async function loadPortfolioData() {
     }
 }
 
-// Ініціалізація графіка
+// Функція для заповнення Highlights
+function populateHighlights(performance) {
+    // Sharpe Ratio
+    document.getElementById('sharpeRatio').textContent = performance.sharpe_ratio.toFixed(2);
+
+    // Annual Volatility (переводимо у відсотки)
+    document.getElementById('annualVolatility').textContent = (performance.annual_volatility * 100).toFixed(2) + '%';
+
+    // Max Drawdown (переводимо у відсотки, прибираємо мінус)
+    document.getElementById('maxDrawdown').textContent = (performance.max_drawdown * 100).toFixed(2) + '%';
+}
+
+// Ініціалізація графіка Portfolio Allocation
 const ctx = document.getElementById('portfolioChart').getContext('2d');
 let portfolioChart;
 
-// Функція для оновлення графіка на основі даних
+// Функція для оновлення графіка Portfolio Allocation
 function updateChart(data) {
     if (portfolioChart) {
-        portfolioChart.destroy(); // Видаляємо старий графік, якщо він існує
+        portfolioChart.destroy();
     }
 
-    // Генеруємо випадкові кольори для кожної валюти
     const backgroundColors = data.labels.map(() => getRandomColor());
 
     portfolioChart = new Chart(ctx, {
@@ -41,7 +61,7 @@ function updateChart(data) {
             datasets: [{
                 label: 'Portfolio Allocation',
                 data: data.allocations,
-                backgroundColor: backgroundColors, // Використовуємо випадкові кольори
+                backgroundColor: backgroundColors,
                 hoverOffset: 4
             }]
         },
@@ -49,17 +69,81 @@ function updateChart(data) {
             plugins: {
                 legend: {
                     labels: {
-                        color: '#fff', // Білий колір тексту для легенди
+                        color: '#fff',
                         font: {
-                            size: 14 // Розмір тексту
+                            size: 14
                         }
                     }
                 },
                 tooltip: {
-                    bodyColor: '#fff', // Білий колір тексту в підказках
-                    titleColor: '#fff', // Білий колір заголовків в підказках
-                    backgroundColor: '#333', // Темний фон для підказок
-                    borderColor: '#fff', // Білий колір рамки підказок
+                    bodyColor: '#fff',
+                    titleColor: '#fff',
+                    backgroundColor: '#333',
+                    borderColor: '#fff',
+                    borderWidth: 1
+                }
+            }
+        }
+    });
+}
+
+// Функція для ініціалізації графіка Portfolio Growth
+let portfolioGrowthChart;
+function initializePortfolioGrowthChart(portfolioValue) {
+    const growthCtx = document.getElementById('portfolioGrowthChart').getContext('2d');
+    if (portfolioGrowthChart) {
+        portfolioGrowthChart.destroy();
+    }
+
+    const dates = Object.keys(portfolioValue);
+    const values = Object.values(portfolioValue);
+
+    portfolioGrowthChart = new Chart(growthCtx, {
+        type: 'line',
+        data: {
+            labels: dates,
+            datasets: [{
+                label: 'Portfolio Value',
+                data: values,
+                borderColor: '#36a2eb',
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                fill: true,
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#fff',
+                        maxTicksLimit: 10 // Обмежуємо кількість міток для читабельності
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: '#fff'
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#fff'
+                    }
+                },
+                tooltip: {
+                    bodyColor: '#fff',
+                    titleColor: '#fff',
+                    backgroundColor: '#333',
+                    borderColor: '#fff',
                     borderWidth: 1
                 }
             }
@@ -70,7 +154,7 @@ function updateChart(data) {
 // Функція для заповнення таблиці даними
 function populateTable(data) {
     const tableBody = document.getElementById('portfolioTable');
-    tableBody.innerHTML = ''; // Очищаємо таблицю
+    tableBody.innerHTML = '';
 
     data.labels.forEach((label, index) => {
         const row = document.createElement('tr');
@@ -115,7 +199,6 @@ function addNewCurrency() {
         return;
     }
 
-    // Додаємо новий рядок до таблиці
     const tableBody = document.getElementById('portfolioTable');
     const newRow = document.createElement('tr');
     newRow.innerHTML = `
@@ -126,14 +209,11 @@ function addNewCurrency() {
     `;
     tableBody.appendChild(newRow);
 
-    // Оновлюємо графік
     updateChartFromInputs();
 
-    // Закриваємо модальне вікно
     const modal = bootstrap.Modal.getInstance(document.getElementById('addCurrencyModal'));
     modal.hide();
 
-    // Очищаємо поля форми
     document.getElementById('tickerInput').value = '';
     document.getElementById('nameInput').value = '';
     document.getElementById('allocationInput').value = '';
@@ -143,14 +223,55 @@ function addNewCurrency() {
 function removeRow(button) {
     const row = button.closest('tr');
     row.remove();
-    updateChartFromInputs(); // Оновлюємо графік після видалення рядка
+    updateChartFromInputs();
+}
+
+// Додаємо нові функції для Annual Returns
+async function loadAnnualReturnsData() {
+    try {
+        const response = await fetch('/public/annualReturns.json');
+        const data = await response.json();
+        return data.annualReturns;
+    } catch (error) {
+        console.error('Error loading annual returns data:', error);
+        return null;
+    }
+}
+
+function populateAnnualReturnsTable(data) {
+    const tableBody = document.getElementById('annualReturnsBody');
+    tableBody.innerHTML = '';
+
+    data.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${item.year}</td>
+            <td>${item.inflation}</td>
+            <td>${item.portfolioReturn}</td>
+            <td>${item.portfolioBalance}</td>
+            <td>${item.SP500Return}</td>
+            <td>${item.SP500Balance}</td>
+            <td>${item.VTI}</td>
+            <td>${item.VNQ}</td>
+            <td>${item.VXUS}</td>
+            <td>${item.BND}</td>
+        `;
+        tableBody.appendChild(row);
+    });
 }
 
 // Завантаження даних при завантаженні сторінки
 window.onload = async () => {
     const portfolioData = await loadPortfolioData();
     if (portfolioData) {
-        populateTable(portfolioData); // Заповнюємо таблицю
-        updateChart(portfolioData); // Оновлюємо графік
+        populateTable(portfolioData);
+        updateChart(portfolioData);
+        populateHighlights(portfolioData.performance);
+        initializePortfolioGrowthChart(portfolioData.portfolioValue); // Ініціалізація графіка Portfolio Growth
+    }
+
+    const annualReturnsData = await loadAnnualReturnsData();
+    if (annualReturnsData) {
+        populateAnnualReturnsTable(annualReturnsData);
     }
 };

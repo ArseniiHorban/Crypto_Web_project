@@ -1,0 +1,148 @@
+{
+  "annualReturns": [
+    {
+      "year": 2025,
+      "inflation": "1.10%",
+      "portfolioReturn": "2.78%",
+      "portfolioBalance": "$33,047",
+      "SP500Return": "1.38%",
+      "SP500Balance": "$59,967",
+      "VTI": "1.09%",
+      "VNQ": "5.41%",
+      "VXUS": "5.29%",
+      "BND": "2.77%"
+    },
+    {
+      "year": 2024,
+      "inflation": "2.89%",
+      "portfolioReturn": "13.31%",
+      "portfolioBalance": "$32,154",
+      "SP500Return": "24.89%",
+      "SP500Balance": "$59,149",
+      "VTI": "23.81%",
+      "VNQ": "4.81%",
+      "VXUS": "5.08%",
+      "BND": "1.38%"
+    },
+    {
+      "year": 2023,
+      "inflation": "3.35%",
+      "portfolioReturn": "18.39%",
+      "portfolioBalance": "$28,377",
+      "SP500Return": "26.19%",
+      "SP500Balance": "$47,363",
+      "VTI": "26.05%",
+      "VNQ": "11.79%",
+      "VXUS": "15.88%",
+      "BND": "5.65%"
+    },
+    {
+      "year": 2022,
+      "inflation": "6.45%",
+      "portfolioReturn": "-17.95%",
+      "portfolioBalance": "$23,969",
+      "SP500Return": "-18.17%",
+      "SP500Balance": "$37,533",
+      "VTI": "-19.51%",
+      "VNQ": "-26.24%",
+      "VXUS": "-16.09%",
+      "BND": "-13.11%"
+    },
+    {
+      "year": 2021,
+      "inflation": "7.04%",
+      "portfolioReturn": "17.32%",
+      "portfolioBalance": "$29,213",
+      "SP500Return": "28.75%",
+      "SP500Balance": "$45,868",
+      "VTI": "25.67%",
+      "VNQ": "40.52%",
+      "VXUS": "9.00%",
+      "BND": "-2.01%"
+    },
+    {
+      "year": 2020,
+      "inflation": "1.36%",
+      "portfolioReturn": "13.79%",
+      "portfolioBalance": "$24,900",
+      "SP500Return": "18.37%",
+      "SP500Balance": "$35,627",
+      "VTI": "21.03%",
+      "VNQ": "-4.68%",
+      "VXUS": "10.69%",
+      "BND": "7.54%"
+    },
+    {
+      "year": 2019,
+      "inflation": "2.29%",
+      "portfolioReturn": "24.02%",
+      "portfolioBalance": "$21,882",
+      "SP500Return": "31.22%",
+      "SP500Balance": "$30,097",
+      "VTI": "30.67%",
+      "VNQ": "28.87%",
+      "VXUS": "21.75%",
+      "BND": "8.84%"
+    },
+    {
+      "year": 2018,
+      "inflation": "1.91%",
+      "portfolioReturn": "-6.47%",
+      "portfolioBalance": "$17,644",
+      "SP500Return": "-4.56%",
+      "SP500Balance": "$22,936",
+      "VTI": "-5.21%",
+      "VNQ": "-6.02%",
+      "VXUS": "-14.43%",
+      "BND": "-0.11%"
+    },
+    {
+      "year": 2017,
+      "inflation": "2.11%",
+      "portfolioReturn": "17.88%",
+      "portfolioBalance": "$18,865",
+      "SP500Return": "21.70%",
+      "SP500Balance": "$24,031",
+      "VTI": "21.21%",
+      "VNQ": "4.91%",
+      "VXUS": "27.45%",
+      "BND": "3.57%"
+    },
+    {
+      "year": 2016,
+      "inflation": "2.07%",
+      "portfolioReturn": "8.50%",
+      "portfolioBalance": "$16,004",
+      "SP500Return": "12.00%",
+      "SP500Balance": "$19,746",
+      "VTI": "12.83%",
+      "VNQ": "8.60%",
+      "VXUS": "4.81%",
+      "BND": "2.53%"
+    },
+    {
+      "year": 2015,
+      "inflation": "0.73%",
+      "portfolioReturn": "-0.53%",
+      "portfolioBalance": "$14,750",
+      "SP500Return": "1.25%",
+      "SP500Balance": "$17,630",
+      "VTI": "0.36%",
+      "VNQ": "2.42%",
+      "VXUS": "-4.19%",
+      "BND": "0.56%"
+    },
+    {
+      "year": 2014,
+      "inflation": "0.76%",
+      "portfolioReturn": "8.48%",
+      "portfolioBalance": "$14,828",
+      "SP500Return": "13.46%",
+      "SP500Balance": "$17,412",
+      "VTI": "12.54%",
+      "VNQ": "30.36%",
+      "VXUS": "-4.74%",
+      "BND": "5.82%"
+    }
+  ]
+}
