@@ -1,16 +1,18 @@
 from datetime import date
 import json
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 from current_data_controller import CurrentDataController
 from sentiment import SentimentAnalysis
 from historical_data_controller import HistoricalDataController
+from portfolio import Portfolio
 
-@csrf_exempt
+
 def get_sentiment(request, coin):
     sentiment_analysis = SentimentAnalysis()
-
-    sentiment = sentiment_analysis.process_sentiment_call(coin)
+    try:
+        sentiment = sentiment_analysis.process_sentiment_call(coin)
+    except ValueError as e:
+        return JsonResponse({"error": "Invalid coin symbol."}, status=500)
 
     if sentiment:
         label, score = sentiment
@@ -20,7 +22,7 @@ def get_sentiment(request, coin):
     else:
         return JsonResponse({"error": "Unable to fetch sentiment data"}, status=500)
 
-@csrf_exempt
+
 def get_current_data(request, coins):
     """
     Takes a string of coin symbols in a shape: 'BTC', 'ETH', 'UNI'
@@ -39,7 +41,7 @@ def get_current_data(request, coins):
     else:
         return JsonResponse({"error": "Unable to fetch current data"}, status=500)
     
-@csrf_exempt
+
 def get_historical_data(request, coins, threshold=7):
     """
     Takes a string of coin symbols in a shape: 'BTC', 'ETH', 'UNI'
@@ -56,4 +58,35 @@ def get_historical_data(request, coins, threshold=7):
             return JsonResponse(data, safe=False)
     except Exception as e:
         return JsonResponse({"error": "Unable to fetch historical data"}, status=500)
+    
 
+
+def get_portfolio_analysis(request, assets, weights, initial_investment=10000):
+    """
+    Takes assets, weights, and initial investment as parameters and returns portfolio analysis.
+    Assets must be in shape assets=BTC,ETH,UNI
+    Weights must be in shape weights=60,30,10
+    Initial investment must be in shape initial_investment=10000
+    """
+    assets_list = assets.split(',')
+    weights_list = weights.split(',')
+    weights_list = [int(w) for w in weights_list]
+
+    # Ensure weights sum up to 100
+    total_weight = sum(weights_list)
+    if total_weight != 100:
+        return JsonResponse({"error": "Weights must sum to 100."}, status=400)
+    
+    # Prepare assets_with_weights dictionary
+    assets_with_weights = {}
+    for i in range(len(assets_list)):
+        assets_with_weights[assets_list[i]] = weights_list[i]
+
+
+    # Create portfolio instance and analyze
+    portfolio = Portfolio(assets_with_weights, initial_investment)
+    try:
+        analysis = portfolio.analyze()
+        return JsonResponse(analysis, safe=False)
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
