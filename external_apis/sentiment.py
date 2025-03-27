@@ -1,9 +1,10 @@
 import json
 import requests
-import datetime
+from datetime import datetime
 from utils import Utils
 from huggingface_hub import InferenceClient
 from transformers import AutoTokenizer
+from together import Together
 
 class SentimentAnalysis:
     def __init__(self):
@@ -101,7 +102,7 @@ class SentimentAnalysis:
             return None
 
 
-    def accumulate_news_data(articles, max_tokens=100):
+    def accumulate_news_data(self, articles, max_tokens=100):
         if not articles:
             return None
 
@@ -128,7 +129,7 @@ class SentimentAnalysis:
                 
         return accumulated_text.strip()         
 
-    def analyze_sentiment(text):
+    def analyze_sentiment(self, text):
         # api_token = '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'
         # sentiment_model_url = 'https://yiyanghkust/finbert-tone'
 
@@ -164,6 +165,9 @@ class SentimentAnalysis:
             return None
 
     def process_sentiment_call(self, coin):
+        if not self.utils.is_valid_coin(coin):
+            raise ValueError("Invalid coin symbol.")
+
         try:
             sentiment_data = self.utils.load_cache("sentiment_cache.json")
         except FileNotFoundError:
@@ -171,12 +175,14 @@ class SentimentAnalysis:
         except json.JSONDecodeError:
             return None
 
-        # It gets latest sentiment twice, when checking if cahce is outdated and when returns it if cache is still valid
         if self.sentiment_cache_outdated(sentiment_data, coin):
             articles = self.fetch_latest_news(coin, 5)
-            text =  self.accumulate_news_data(articles=articles, max_tokens=180)
+            text =  self.accumulate_news_data(articles=articles, max_tokens=400)
+            text = self.summarize(coin, text)
             print(text)
-
+            if text.strip() == 'Error':
+                raise ValueError(f"Error with processing {coin} data.")
+            
             if text:
                 sentiment = self.analyze_sentiment(text)
                 if sentiment:
@@ -233,4 +239,13 @@ class SentimentAnalysis:
             except Exception as e:
                 print("Unexpected error saving sentiment cache.")
 
+    def summarize(self, coin, text):
+        client = Together()
+
+        completion = client.chat.completions.create(
+        model="meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
+        messages=[{"role": "user", "content": f"Please summarize the following text about {coin} in a concise manner, focusing only on {coin} data and excluding data about other coins. Include current price data, exclude past price data; if no current data mentioned, just try to catch overall situation of a {coin}.Try to keep it at around one sentence long. If no text about {coin} is provided, return a single word 'Error'. Please consider that your summarized text will be passed to finBERT directly with no transformation, so really try to make a short and concise summary, only return a summary:\n\n{text}"}],
+        )
+
+        return completion.choices[0].message.content
 
