@@ -6,8 +6,7 @@ from utils import Utils
 
 class HistoricalDataController:
     def __init__(self):
-        self.utils = Utils
-        pass
+        self.utils = Utils()
 
     
     def transform_historical_data_json(self, data):
