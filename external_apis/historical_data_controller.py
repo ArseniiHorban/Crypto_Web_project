@@ -121,9 +121,3 @@ class HistoricalDataController:
 
         return result
 
-
-# test = HistoricalDataController()
-
-# coins = ["BTC", "ETH", "UNI", "E"]
-# data = test.process_historical_data_call(coins)
-# print(data)
