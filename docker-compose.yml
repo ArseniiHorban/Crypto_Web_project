@@ -1,0 +1,55 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7.0
+    ports:
+      - "6379:6379"
+
+  web:
+    build: .
+    command: sh -c "echo 'Waiting for db and redis...' && 
+             sleep 10 && 
+             echo 'Starting migrations...' && 
+             python manage.py migrate && 
+             echo 'Creating test users...' && 
+             python manage.py create_test_users && 
+             echo 'Starting server...' && 
+             python manage.py runserver 0.0.0.0:8000 --verbosity 3"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    environment:
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - Debug=True
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    develop:
+      watch:
+        - action: rebuild
+          path: .
+          target: /app
+          ignore:
+            - .git/
+            - __pycache__/
+            - venv/
+            - .idea/
+            - logs/
+
+volumes:
+  postgres_data:
