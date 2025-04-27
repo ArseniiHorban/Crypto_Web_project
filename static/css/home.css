@@ -1,0 +1,250 @@
+@import url('common.css');
+
+/* General body styles */
+body {
+    background: linear-gradient(135deg, #222 0%, #000 100%);
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Main content styles */
+.main-content {
+    padding-top: 90px;
+    padding-bottom: 60px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.section-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: center;
+}
+
+/* Market volume styles */
+.market-volume {
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Chart section styles */
+.chart-section {
+    margin-bottom: 60px;
+}
+
+.chart-controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.chart-btn {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #ccc;
+    padding: 7px 14px;
+    font-size: 0.7rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.chart-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+.chart-btn.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+.chart-container {
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    height: 400px;
+}
+
+#bitcoinChart {
+    max-height: 400px;
+    width: 100%;
+}
+
+/* Bitcoin stats styles */
+.bitcoin-stats {
+    margin-bottom: 60px;
+}
+
+.stats-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stats-card p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+.stats-card strong {
+    color: #ccc;
+}
+
+.stats-card span {
+    color: #fff;
+}
+
+/* Trending coins section styles */
+.trending-section {
+    margin-bottom: 60px;
+}
+
+.trending-coin {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.coin-img {
+    width: 30px;
+    height: 30px;
+}
+
+.trending-coin p {
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+/* Table section styles */
+.table-section {
+    margin-bottom: 60px;
+}
+
+.table {
+    color: #fff;
+    background-color: transparent !important;
+}
+
+.table th,
+.table td {
+    border-color: rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    color: #fff;
+    background-color: transparent !important;
+}
+
+.table th {
+    background-color: #0f0f1a;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+/* Mini-chart styles */
+td.mini-chart {
+    width: 22% !important; /* Increased from 15% to 22% (1.5x) */
+    min-width: 100px; /* Increased for visibility */
+}
+
+td.mini-chart canvas {
+    width: 100% !important;
+    max-width: 120px !important; /* Increased from 80px to 120px (1.5x) */
+    height: 50px !important;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .main-content {
+        padding-top: 70px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .chart-btn {
+        padding: 6px 12px;
+        font-size: 0.65rem;
+    }
+
+    .chart-container {
+        padding: 15px;
+        height: 300px;
+    }
+
+    .stats-card {
+        height: auto;
+    }
+
+    .table th,
+    .table td {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    .stats-card p {
+        font-size: 0.85rem;
+    }
+
+    .trending-coin p {
+        font-size: 0.8rem;
+    }
+
+    td.mini-chart {
+        width: 25% !important; /* Slightly larger on smaller screens */
+    }
+
+    td.mini-chart canvas {
+        max-width: 90px !important; /* Adjusted for smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .chart-btn {
+        padding: 5px 10px;
+        font-size: 0.6rem;
+    }
+
+    td.mini-chart {
+        width: 30% !important;
+    }
+
+    td.mini-chart canvas {
+        max-width: 75px !important;
+    }
+}
